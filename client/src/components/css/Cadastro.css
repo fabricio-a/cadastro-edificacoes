@@ -1,0 +1,11 @@
+.cadastro {
+    flex: 1 1 auto;
+    height: calc(100% - 4px);
+    width: 100px;
+    box-sizing: border-box;
+    background-color:#00BFA5;
+    border-radius: 6px;
+    margin: 2px;
+    border: solid 1px white;
+    color: white;
+}

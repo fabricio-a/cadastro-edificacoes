@@ -1,11 +1,21 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import './css/App.css'
+import './css/Mapa.css'
+import './css/Cadastro.css'
 
-import Cadastro from './Cadastro'
-import Mapa from './Mapa'
+import Mapa from './mapa/Mapa'
+import Cadastro from './cadastro/Cadastro'
 
-export default () =>
-    <React.Fragment>
-        <Cadastro />
-        <Mapa />
-    </React.Fragment>
+import store from '../store'
+
+export default function App() {
+    return (
+        <Provider store={store}>
+            <div className="app">
+                <Cadastro />
+                <Mapa />
+            </div>
+        </Provider>
+    )
+}
