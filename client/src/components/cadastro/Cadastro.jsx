@@ -1,8 +1,9 @@
 import React, { useState , useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import '../css/Cadastro.css'
+import '../css/Mapa.css'
 
 import { Button } from '@material-ui/core'
-import '../css/Cadastro.css'
 
 import cadastrarEdificacao from '../../store/actions/cadastrarEdificacao'
 
