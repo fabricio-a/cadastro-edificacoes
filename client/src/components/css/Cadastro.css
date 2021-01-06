@@ -1,5 +1,6 @@
 .cadastro {
-    flex: 1 1 auto;
+    flex-grow: 1;
+    padding: 5px;
     height: calc(100% - 4px);
     width: 100px;
     box-sizing: border-box;
@@ -8,4 +9,9 @@
     margin: 2px;
     border: solid 1px white;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
