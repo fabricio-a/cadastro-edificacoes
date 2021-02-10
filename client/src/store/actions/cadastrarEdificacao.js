@@ -1,5 +1,5 @@
 export default function cadastrarEdificacao(cadastro) {
-    alert('EDIFICACAO CADASTRADA')
+    alert('EDIFICACAO CADASTRADA');
 
     return(
         {
@@ -8,5 +8,5 @@ export default function cadastrarEdificacao(cadastro) {
                 cadastro
             }
         }
-    )
+    );
 }

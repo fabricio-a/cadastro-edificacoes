@@ -1,9 +1,9 @@
-import 'ol/ol.css'
-import { Map, View } from 'ol'
-import TileLayer from 'ol/layer/Tile'
-import TileArcGISRest from 'ol/source/TileArcGISRest'
-import OSM from 'ol/source/OSM'
-import { Zoom, ScaleLine } from 'ol/control'
+import 'ol/ol.css';
+import { Map, View } from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import TileArcGISRest from 'ol/source/TileArcGISRest';
+import OSM from 'ol/source/OSM';
+import { Zoom, ScaleLine } from 'ol/control';
 
 export default function OlMap(map) {
     const layers = map.urlLayers.map(layer => {
@@ -15,8 +15,8 @@ export default function OlMap(map) {
                 }
             }),
             zIndex: layer.zIndex
-        })
-    })
+        });
+    });
 
     return new Map({
         layers: [
@@ -45,5 +45,5 @@ export default function OlMap(map) {
             })
         ]
 
-    })
+    });
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { makeStyles } from '@material-ui/styles'
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { makeStyles } from '@material-ui/styles';
 
-import OlMap from './OlMap'
+import OlMap from './OlMap';
 
 const useStyles = makeStyles({
     mapa: {
@@ -15,12 +15,12 @@ const useStyles = makeStyles({
         overflow: 'hidden',
         border: 'solid 1px white',
     }
-})
+});
 
 export default function Mapa() {
-    const tileLayers = useSelector(state => state.data.tileLayers)
+    const tileLayers = useSelector(state => state.data.tileLayers);
 
-    const classes = useStyles()
+    const classes = useStyles();
 
     useEffect(() => {
         const mapa = OlMap({
@@ -28,10 +28,10 @@ export default function Mapa() {
             zoom: 11.7, 
             center: [-49.15815911402509, -25.589405115151322],
             projection: 'EPSG:4326'
-        })
-    }, [])
+        });
+    }, []);
 
     return (
         <div id='mapa' className={classes.mapa}></div>
-    )
+    );
 }
