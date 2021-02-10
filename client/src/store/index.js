@@ -11,7 +11,7 @@ const INITIAL_CADASTRO = {
             {
                 url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
                 zIndex: 2,
-                camadas: [0, 1, 2, 3, 4]
+                camadas: [0, 1, 2, 3, 4, 5, 6, 7]
             }
         ],
 

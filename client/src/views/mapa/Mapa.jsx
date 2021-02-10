@@ -6,14 +6,13 @@ import OlMap from './OlMap';
 
 const useStyles = makeStyles({
     mapa: {
-        flexGrow: 4,
-        height: 'calc(100% - 4px)',
-        boxSizing: 'border-box',
         backgroundColor: '#00BFA5',
+        boxSizing: 'border-box',
         borderRadius: '6px',
-        margin: '2px',
         overflow: 'hidden',
         border: 'solid 1px white',
+        minHeight: '99vh',
+        margin: '0.5vh'
     }
 });
 
