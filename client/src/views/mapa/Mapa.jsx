@@ -11,8 +11,16 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         overflow: 'hidden',
         border: 'solid 1px white',
-        minHeight: '99vh',
+        height: '99vh',
         margin: '0.5vh'
+    },
+    controles: {
+        '& div': {
+            backgroundColor: '#00BFA5'
+        },
+        '& button': {
+            backgroundColor: '#00BFA5'
+        }
     }
 });
 
@@ -24,10 +32,16 @@ export default function Mapa() {
     useEffect(() => {
         const mapa = OlMap({
             urlLayers: tileLayers, 
-            zoom: 11.7, 
+            zoom: 12, 
             center: [-49.15815911402509, -25.589405115151322],
-            projection: 'EPSG:4326'
+            projection: 'EPSG:4326',
+            classes: classes.controles
         });
+
+        mapa.on('singleclick', e => {
+            console.log(e.coordinate)
+        })
+
     }, []);
 
     return (

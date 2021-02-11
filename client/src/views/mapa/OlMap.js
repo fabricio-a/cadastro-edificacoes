@@ -36,12 +36,12 @@ export default function OlMap(map) {
 
         controls: [
             new Zoom({
-                duration: 500,
-                className: 'ol-zoom'
+                duration: 900,
+                className: map.classes + ' ol-zoom'
             }),
             new ScaleLine({
                 units: 'metric',
-                className: 'ol-scale-line'
+                className: map.classes + ' ol-scale-line'
             })
         ]
 

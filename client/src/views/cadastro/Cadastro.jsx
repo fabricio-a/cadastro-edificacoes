@@ -18,15 +18,15 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         border: 'solid 1px white',
         color: 'white',
+        overflow: 'auto',
         boxSizing: 'border-box',
-        minHeight: '99vh',
-        overflow: 'hidden',
+        height: '99vh',
         padding: '5px',
-        margin: '0.5vh'
+        margin: '0.5vh',
     },
 
     formControl: {
-        minWidth: 220
+        minWidth: 250
     }
 });
 
@@ -50,12 +50,18 @@ export default function Cadastro() {
                 container
                 spacing={1}
                 direction='column'
-                justify='stretch'
+                justify='space-between'
                 alignItems='flex-start'
             >
                 <Grid item xs={12} sm={2}>
                     <h2>Cadastro de Edificações</h2> 
-                </Grid>  
+                </Grid> 
+
+                {cadastro.inputBlockedItens.map(input => 
+                    <Grid item xs={12} sm={1}>
+                        <TextField id={input.id} value='valor padrao' label={input.name} variant='outlined' size='small' className={classes.formControl} disabled/>
+                    </Grid>
+                )}
 
                 {cadastro.selectItens.map(select => 
                     <Grid item xs={12} sm={1}>
@@ -83,11 +89,9 @@ export default function Cadastro() {
                     </Grid>
                 )}
 
-                <Grid item xs={12} sm={1}>
+                <Grid item>
                     <Button variant='contained' color='default' onClick={clean}>Limpar</Button>
-                </Grid>
-                <Grid item xs={12} sm={1}>
-                    <Button variant='contained' color='default' onClick={clean}>Limpar</Button>
+                    <Button variant='contained' color='default' onClick={cadastrar}>Salvar</Button>
                 </Grid>
             </Grid>
         </div>

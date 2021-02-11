@@ -9,10 +9,18 @@ const INITIAL_CADASTRO = {
                 camadas: [0]
             },
             {
-                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
+                //url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
+                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/Cadastro_SJP/MapServer',
                 zIndex: 2,
-                camadas: [0, 1, 2, 3, 4, 5, 6, 7]
+                camadas: [0]
             }
+        ],
+
+        inputBlockedItens: [
+            { name: 'Inscriçao', id: 'INSCRICAO'},
+            { name: 'Área da Inscrição', id: 'AREA_INSCR'},
+            { name: 'Unidade', id: 'UNIDADE'},
+            { name: 'Área da Unidade', id: 'AREA_UNIDA'},
         ],
 
         selectItens: [
