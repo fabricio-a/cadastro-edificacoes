@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         border: 'solid 1px white',
         color: 'white',
         overflow: 'auto',
-        height: '99vh',
         padding: '5px',
         margin: '0.5vh',
         boxSizing: 'border-box'

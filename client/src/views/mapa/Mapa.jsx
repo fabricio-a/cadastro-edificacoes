@@ -12,6 +12,7 @@ const useStyles = makeStyles({
         overflow: 'hidden',
         border: 'solid 1px white',
         height: '99vh',
+        width: '300px',
         margin: '0.5vh'
     },
     controles: {

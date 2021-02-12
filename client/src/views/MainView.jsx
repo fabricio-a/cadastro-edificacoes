@@ -11,7 +11,6 @@ const useStyles = makeStyles({
     app: {
         backgroundColor: '#E6E6E6',
         fontFamily: 'Roboto, sans-serif',
-        height: '100vh',
         padding: 0,
     }
 });
@@ -23,17 +22,16 @@ export default function() {
         <Grid 
             container
             direction='row'
-            justify='space-around'
-            alignItems='center'
+            justify='space-between'
+            alignItems='stretch'
             className={classes.app}
         >
             <Grid item>
-                <Cadastro />
+                <Cadastro xs={3}/>
             </Grid>
             <Grid item>
-                <Mapa />
+                <Mapa xs={9}/>
             </Grid>
-
         </Grid>
     );
 }
