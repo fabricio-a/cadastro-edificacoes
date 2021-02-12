@@ -27,10 +27,10 @@ export default function() {
             alignItems='center'
             className={classes.app}
         >
-            <Grid item xs={12} sm={3}>
+            <Grid item>
                 <Cadastro />
             </Grid>
-            <Grid item xs={12} sm={9}>
+            <Grid item>
                 <Mapa />
             </Grid>
 

@@ -25,23 +25,19 @@ const useStyles = makeStyles({
 });
 
 export default function Mapa() {
-    const tileLayers = useSelector(state => state.data.tileLayers);
+    const layers = useSelector(state => state.data.layers);
 
     const classes = useStyles();
 
     useEffect(() => {
         const mapa = OlMap({
-            urlLayers: tileLayers, 
+            tile: layers.tile,
+            vector: layers.vector,
             zoom: 12, 
             center: [-49.15815911402509, -25.589405115151322],
             projection: 'EPSG:4326',
             classes: classes.controles
         });
-
-        mapa.on('singleclick', e => {
-            console.log(e.coordinate)
-        })
-
     }, []);
 
     return (
