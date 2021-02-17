@@ -15,22 +15,22 @@ const useStyles = makeStyles({
     }
 });
 
-export default function() {
+export default function MainView() {
     const classes = useStyles();
 
     return (
         <Grid 
             container
             direction='row'
-            justify='space-between'
-            alignItems='stretch'
+            justify='center'
+            alignItems='center'
             className={classes.app}
         >
-            <Grid item>
-                <Cadastro xs={3}/>
+            <Grid container item xs={3}>
+                <Cadastro />
             </Grid>
-            <Grid item>
-                <Mapa xs={9}/>
+            <Grid container item xs={9}>
+                <Mapa />
             </Grid>
         </Grid>
     );

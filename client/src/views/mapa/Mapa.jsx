@@ -12,21 +12,21 @@ const useStyles = makeStyles({
         overflow: 'hidden',
         border: 'solid 1px white',
         height: '99vh',
-        width: '300px',
+        width: '100%',
         margin: '0.5vh'
     },
     controles: {
         '& div': {
-            backgroundColor: '#00BFA5'
+            backgroundColor: '#00BFA5',
         },
         '& button': {
-            backgroundColor: '#00BFA5'
+            backgroundColor: '#00BFA5',
         }
     }
 });
 
 export default function Mapa() {
-    const layers = useSelector(state => state.data.layers);
+    const layers = useSelector(state => state.layers);
 
     const classes = useStyles();
 
@@ -39,7 +39,10 @@ export default function Mapa() {
             projection: 'EPSG:4326',
             classes: classes.controles
         });
-    }, []);
+
+        console.log(mapa.getLayers())
+
+    }, [layers, classes]);
 
     return (
         <div id='mapa' className={classes.mapa}></div>

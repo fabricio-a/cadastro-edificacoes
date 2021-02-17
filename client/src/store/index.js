@@ -2,30 +2,6 @@ import { createStore } from 'redux';
 
 const INITIAL_CADASTRO = {
     data: {
-        layers: {
-            tile: [
-                {
-                    url: 'https://www.senocwb.com/senoportal/rest/services/SJP/Mosaico_urbano/MapServer',
-                    zIndex: 1,
-                    camadas: [0]
-                },
-                {
-                    url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
-                    zIndex: 2,
-                    camadas: [0]
-                }
-            ],
-
-            vector: [
-                {
-                    url: 'http://localhost:5000/dados/LOTES_CADASTRO.json'
-                },
-                {
-                    url: 'http://localhost:5000/dados/EDIFICACOES_CADASTRO.json'
-                }
-            ]
-        },
-
         inputBlockedItens: [
             { name: 'Inscriçao', id: 'INSCRICAO'},
             { name: 'Área da Inscrição', id: 'AREA_INSCR'},
@@ -50,14 +26,14 @@ const INITIAL_CADASTRO = {
             },
             {
                 name: 'Dominio', 
-                id: '1-DOMINIO',
+                id: '2-DOMINIO',
                 menuItens: [
                     { name: '1 - Própria', id: 'propria'}
                 ]
             },
             {
                 name: 'Padrão', 
-                id: '1-PADRAO',
+                id: '3-PADRAO',
                 menuItens: [
                     { name: '1 - Alto', id: 'alto'},
                     { name: '2 - Médio', id: 'medio'},
@@ -66,7 +42,7 @@ const INITIAL_CADASTRO = {
             },
             {
                 name: 'Utilização', 
-                id: '1-UTILIZAC',
+                id: '4-UTILIZAC',
                 menuItens: [
                     { name: '1 - Residencial', id: 'residencial'},
                     { name: '2 - Comercial', id: 'comercial'},
@@ -78,7 +54,7 @@ const INITIAL_CADASTRO = {
             },
             {
                 name: 'Construção', 
-                id: '1-CONSTRUC',
+                id: '5-CONSTRUC',
                 menuItens: [
                     { name: '1 - Alvenaria', id: 'alvenaria'},
                     { name: '2 - Madeira', id: 'madeira'},
@@ -90,7 +66,7 @@ const INITIAL_CADASTRO = {
             },
             {
                 name: 'Tipo', 
-                id: '1-TIPO',
+                id: '6-TIPO',
                 menuItens: [
                     { name: '1 - Horizontal', id: 'horizontal'},
                     { name: '2 - Vertical', id: 'vertical'}
@@ -101,14 +77,58 @@ const INITIAL_CADASTRO = {
         inputItens: [
             { name: 'Ano da Construção', id: 'ANO_CONSTR'},
             { name: 'Observações', id: 'OBSERVACAO'},
-        ]        
-    }
+        ],
+        
+        form: {
+            'INSCRICAO': '',
+            'AREA_INSCR': '',
+            'UNIDADE': '',
+            'AREA_UNIDA': '',
+            '1-CLASSE': '',
+            '2-DOMINIO': '',
+            '3-PADRAO': '',
+            '4-UTILIZAC': '',
+            '5-CONSTRUC': '',
+            '6-TIPO': '',
+            'ANO_CONSTR': '',
+            'OBSERVACAO': ''
+        }
+    },
+
+    layers: {
+        tile: [
+            {
+                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/Mosaico_urbano/MapServer',
+                zIndex: 0,
+                camadas: [0]
+            },
+            {
+                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
+                zIndex: 1,
+                camadas: [0]
+            }
+        ],
+
+        vector: [
+           // {
+           //     url: 'http://localhost:5000/dados/LOTES.geojson'
+           // },
+            {
+                url: 'http://localhost:5000/dados/EDIFICACOES.geojson'
+            }
+        ]
+    },
 };
 
 function storeCadastro(state = INITIAL_CADASTRO, action) {
-    return {
-        ...state
-    };
+    switch(action.type) {
+        case 'CADASTRAR_EDIFICACAO':
+            return { ...state};
+        case 'SET_DATA_ON_FORM':
+            return { ...state, data: { ...state.data, form: { ...state.data.form, ...action.payload } }};
+        default:
+            return state;
+    }
 }
 
 export default createStore(storeCadastro);

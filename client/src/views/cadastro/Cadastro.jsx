@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/styles';
 
 import cadastrarEdificacao from '../../store/actions/cadastrarEdificacao';
+import setDataOnForm from '../../store/actions/setDataOnForm';
 
 const useStyles = makeStyles({
     cadastro: {
@@ -21,7 +22,8 @@ const useStyles = makeStyles({
         overflow: 'auto',
         padding: '5px',
         margin: '0.5vh',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        height: '75vh'
     },
 
     formControl: {
@@ -32,23 +34,25 @@ const useStyles = makeStyles({
 export default function Cadastro() {
     const cadastro = useSelector(state => state.data);
     const dispatch = useDispatch();
-
     const classes = useStyles();
 
-    function cadastrar() {
+    const cadastrar = () => {
         dispatch(cadastrarEdificacao(cadastro));
     }
 
-    function clean() {
+    const clean = () => {
+        dispatch(setDataOnForm(Object.keys(cadastro.form), 'clear'));
+    }
 
+    const onInputChange = (e, s_id) => {
+        dispatch(setDataOnForm(s_id, e.target.value));
     }
 
     return (
         <Grid
             container
-            spacing={2}
             direction='column'
-            justify='center'
+            justify='space-between'
             alignItems='center'
             className={classes.cadastro}
         >
@@ -57,38 +61,49 @@ export default function Cadastro() {
             </Grid> 
 
             {cadastro.inputBlockedItens.map(input => 
-                <Grid>
-                    <TextField id={input.id} value='valor padrao' label={input.name} variant='outlined' size='small' className={classes.formControl} disabled/>
+                <Grid key={input.id+'-grid'}>
+                    <TextField 
+                        id={input.id} label={input.name} 
+                        variant='outlined' size='small' className={classes.formControl} disabled
+                        value={cadastro.form[input.id]}
+                        onChange={(e) => onInputChange(e, input.id)}
+                    />
                 </Grid>
             )}
 
             {cadastro.selectItens.map(select => 
-                <Grid>
-                    <FormControl variant='outlined' size='small' className={classes.formControl}>
-                        <InputLabel id={select.id+"-label"}>{select.name}</InputLabel>
+                <Grid key={select.id+'-grid'}>
+                    <FormControl  key={select.id+'-form'} variant='outlined' size='small' className={classes.formControl}>
+                        <InputLabel key={select.id+"-label"}>{select.name}</InputLabel>
                         <Select
-                            labelId={select.id+"-label"}
-                            id={select.id}
+                            labelId={select.id+'-label'}
+                            key={select.id}
                             required
                             label={select.name}
+                            value={cadastro.form[select.id]}
+                            onChange={(e) => onInputChange(e, select.id)}
                         >
-                            <MenuItem value=""><em>None</em></MenuItem>
+                            <MenuItem value=''><em>None</em></MenuItem>
                             {select.menuItens.map(item => 
-                                <MenuItem value={item.id}>{item.name}</MenuItem>
+                                <MenuItem key={item.id+'-key'} value={item.id}>{item.name}</MenuItem>
                             )}
-
                         </Select>
                     </FormControl>
                 </Grid>
             )}
 
             {cadastro.inputItens.map(input => 
-                <Grid item>
-                    <TextField id={input.id} label={input.name} variant='outlined' size='small' className={classes.formControl}/>
+                <Grid key={input.id+'-grid'}>
+                    <TextField 
+                        id={input.id} label={input.name} 
+                        variant='outlined' size='small' className={classes.formControl}
+                        value={cadastro.form[input.id]}
+                        onChange={(e) => onInputChange(e, input.id)}
+                    />
                 </Grid>
             )}
 
-            <Grid item>
+            <Grid container justify='space-evenly'>
                 <Button variant='contained' color='default' onClick={clean}>Limpar</Button>
                 <Button variant='contained' color='default' onClick={cadastrar}>Salvar</Button>
             </Grid>
