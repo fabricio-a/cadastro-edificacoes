@@ -92,6 +92,17 @@ const INITIAL_CADASTRO = {
             '6-TIPO': '',
             'ANO_CONSTR': '',
             'OBSERVACAO': ''
+        },
+
+        colors: {
+            'casa': '',
+            'apartamento': '',
+            'sobrado': '',
+            'galpao': '',
+            'salao': '',
+            'garagem': '',
+            'outros': '',
+            'edicula': ''
         }
     },
 
@@ -100,22 +111,32 @@ const INITIAL_CADASTRO = {
             {
                 url: 'https://www.senocwb.com/senoportal/rest/services/SJP/Mosaico_urbano/MapServer',
                 zIndex: 0,
+                maxZoom: 30,
                 camadas: [0]
             },
             {
                 url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
                 zIndex: 1,
+                maxZoom: 18,
                 camadas: [0]
-            }
+            },
+            {
+                url: 'https://www.senocwb.com/senoportal/rest/services/SJP_cadastro/Cadastro_SJP/MapServer',
+                zIndex: 2,
+                maxZoom: 18,
+                camadas: [0]
+            },
         ],
 
         vector: [
-           // {
-           //     url: 'http://localhost:5000/dados/LOTES.geojson'
-           // },
-            {
-                url: 'http://localhost:5000/dados/EDIFICACOES.geojson'
-            }
+           {
+               url: 'http://localhost:5000/dados/LOTES.geojson',
+               minZoom: 18,
+           },
+           {
+               url: 'http://localhost:5000/dados/EDIFICACOES.geojson',
+               minZoom: 18,
+           }
         ]
     },
 };

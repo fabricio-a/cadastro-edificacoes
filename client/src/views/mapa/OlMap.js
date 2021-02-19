@@ -7,22 +7,46 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OSM from 'ol/source/OSM';
 import { Zoom, ScaleLine } from 'ol/control';
+import {Fill, Stroke, Style, Text} from 'ol/style';
 
-function vectorLayer(url) {
+function initialStyle(feature) {
+    if(feature.values_.hasOwnProperty('UNIDADE')) {
+        return new Style({
+            stroke: new Stroke({
+                color: 'rgb(0,255,0)',
+                width: 1
+            })
+        })
+    }
+
+    return new Style({
+        stroke: new Stroke({
+            color: 'rgb(255,255,255)',
+            width: 1
+        })
+    })
+}
+
+function vectorLayer(vector) {
     return new VectorLayer({
+        minZoom: vector.minZoom,
         source: new VectorSource({
           format: new GeoJSON({
               options: {
                   dataProjection: 'EPSG:4326'
               }
           }),
-          url: url,
-        })
+          url: vector.url,
+        }),
+        style: (feature) => {
+            return initialStyle(feature);
+        }
     })
 }
 
 function tileLayer(layer) {
     return new TileLayer({
+        maxZoom: layer.maxZoom,
         source: new TileArcGISRest({
             url: layer.url,
             params: {
@@ -36,7 +60,7 @@ function tileLayer(layer) {
 export default function OlMap(mapa) {
     const layers = [
         ...mapa.tile.map(tile => tileLayer(tile)),
-        ...mapa.vector.map(vector => vectorLayer(vector.url))
+        ...mapa.vector.map(vector => vectorLayer(vector))
     ];
 
     return new Map({

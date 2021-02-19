@@ -39,9 +39,6 @@ export default function Mapa() {
             projection: 'EPSG:4326',
             classes: classes.controles
         });
-
-        console.log(mapa.getLayers())
-
     }, [layers, classes]);
 
     return (
