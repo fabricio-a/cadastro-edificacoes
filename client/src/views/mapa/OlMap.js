@@ -7,7 +7,7 @@ import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import OSM from 'ol/source/OSM';
 import { Zoom, ScaleLine } from 'ol/control';
-import {Fill, Stroke, Style, Text} from 'ol/style';
+import {Fill, Stroke, Style} from 'ol/style';
 
 function initialStyle(feature) {
     if(feature.values_.hasOwnProperty('UNIDADE')) {
@@ -15,8 +15,12 @@ function initialStyle(feature) {
             stroke: new Stroke({
                 color: 'rgb(0,255,0)',
                 width: 1
+            }),
+
+            fill: new Fill({
+                color: 'rgba(255,255,255,0.01)'
             })
-        })
+        });
     }
 
     return new Style({
@@ -24,12 +28,13 @@ function initialStyle(feature) {
             color: 'rgb(255,255,255)',
             width: 1
         })
-    })
+    });
 }
 
 function vectorLayer(vector) {
     return new VectorLayer({
         minZoom: vector.minZoom,
+        selectable: vector.selectable,
         source: new VectorSource({
           format: new GeoJSON({
               options: {
@@ -89,6 +94,5 @@ export default function OlMap(mapa) {
                 className: mapa.classes + ' ol-scale-line'
             })
         ]
-
     });
 }

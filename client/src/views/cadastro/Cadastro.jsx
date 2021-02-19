@@ -16,6 +16,10 @@ import setDataOnForm from '../../store/actions/setDataOnForm';
 import Controles from './Controles';
 
 const useStyles = makeStyles({
+    root: {
+        padding: '5px',
+        margin: '0.5vh',
+    }, 
     cadastro: {
         backgroundColor: '#00BFA5',
         borderRadius: '6px',
@@ -53,7 +57,10 @@ export default function Cadastro() {
     }
 
     return (
-        <Grid >
+        <Grid 
+            container
+            className={classes.root}
+        >
             <Controles />
 
             <Grid

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import IconButton from '@material-ui/core/IconButton';
 import LayersIcon from '@material-ui/icons/Layers';
-import StreetviewIcon from '@material-ui/icons/Streetview';
+import StreetviewOutlinedIcon from '@material-ui/icons/StreetviewOutlined';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/styles';
 import Draggable from 'react-draggable';
 
@@ -38,13 +39,19 @@ export default function Cadastro() {
             alignItems='center'
             className={classes.controles}
         >
+            <TextField 
+                variant='outlined' size='small'
+                value='um valor ai...'
+            />
+
+
             <IconButton>
                 <LayersIcon></LayersIcon>
             </IconButton>
 
             <Draggable>
                 <IconButton>
-                    <StreetviewIcon></StreetviewIcon>
+                    <StreetviewOutlinedIcon></StreetviewOutlinedIcon>
                 </IconButton>
             </Draggable>
         </Grid>

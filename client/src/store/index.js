@@ -132,10 +132,12 @@ const INITIAL_CADASTRO = {
            {
                url: 'http://localhost:5000/dados/LOTES.geojson',
                minZoom: 18,
+               selectable: false
            },
            {
                url: 'http://localhost:5000/dados/EDIFICACOES.geojson',
                minZoom: 18,
+               selectable: true
            }
         ]
     },

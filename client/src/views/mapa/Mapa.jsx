@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
+import Select from 'ol/interaction/Select';
+import { click } from 'ol/events/condition';
+import { useSelector, useDispatch } from 'react-redux';
+import selectFeature from '../../store/actions/selectFeature';
 
 import OlMap from './OlMap';
 
@@ -27,8 +30,10 @@ const useStyles = makeStyles({
 
 export default function Mapa() {
     const layers = useSelector(state => state.layers);
-
+    const form = useSelector(state => state.data.form);
+    ;
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const mapa = OlMap({
@@ -39,6 +44,21 @@ export default function Mapa() {
             projection: 'EPSG:4326',
             classes: classes.controles
         });
+
+        let select = new Select({
+            condition: click,
+            layers: layer => layer.values_.selectable 
+        });
+
+        select.on('select', (event) => {
+            if(event.selected.length > 0) {
+                dispatch(selectFeature(Object.keys(form), event.selected[0].values_));
+            } else {
+                dispatch(selectFeature(Object.keys(form),'none'));
+            }
+        })
+
+        mapa.addInteraction(select);
     }, [layers, classes]);
 
     return (
