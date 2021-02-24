@@ -30,8 +30,7 @@ const useStyles = makeStyles({
 
 export default function Mapa() {
     const layers = useSelector(state => state.layers);
-    const form = useSelector(state => state.data.form);
-    ;
+    const { form, server } = useSelector(state => state.data);
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -52,7 +51,13 @@ export default function Mapa() {
 
         select.on('select', (event) => {
             if(event.selected.length > 0) {
-                dispatch(selectFeature(Object.keys(form), event.selected[0].values_));
+                fetch(server.urlDb + `/get_cadastro/:${event.selected[0].values_['INSCRICAO']}/:${event.selected[0].values_['UNIDADE']}`)
+                    .then(resp => resp.json())
+                    .then(resp => {
+                        console.log(resp)
+                        dispatch(selectFeature(Object.keys(form), event.selected[0].values_));
+                    });
+
             } else {
                 dispatch(selectFeature(Object.keys(form),'none'));
             }

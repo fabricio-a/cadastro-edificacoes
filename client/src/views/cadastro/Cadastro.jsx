@@ -47,7 +47,20 @@ export default function Cadastro() {
     const classes = useStyles();
 
     const cadastrar = () => {
-        dispatch(cadastrarEdificacao(cadastro));
+        fetch(cadastro.server.urlDb + '/cadastrar', {
+            method: 'POST',
+            body: JSON.stringify({
+                ...cadastro.form,
+                data: '',
+                usuario: 'fabricio'
+            })
+        })
+            .then((res) => {
+                alert(res)
+            })
+            .catch((err) => {
+                alert('falha ao cadastrar');
+            })
     }
 
     const clean = () => {
@@ -68,7 +81,8 @@ export default function Cadastro() {
             <Grid
                 container
                 direction='column'
-                justify='space-evenly'
+                justify='center'
+                spacing={1}
                 alignItems='center'
                 className={classes.cadastro}
             >

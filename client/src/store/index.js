@@ -103,6 +103,12 @@ const INITIAL_CADASTRO = {
             'garagem': '',
             'outros': '',
             'edicula': ''
+        },
+
+        server: {
+            urlDb: 'http://localhost:5000',
+            urlAuth: 'http://localhost:5000/auth',
+            urlStatics: 'http://localhost:5000/dados'
         }
     },
 
