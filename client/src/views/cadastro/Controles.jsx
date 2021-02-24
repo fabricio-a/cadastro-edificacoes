@@ -2,12 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import IconButton from '@material-ui/core/IconButton';
-import LayersIcon from '@material-ui/icons/Layers';
-import StreetviewOutlinedIcon from '@material-ui/icons/StreetviewOutlined';
+import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/styles';
-import Draggable from 'react-draggable';
 
 const useStyles = makeStyles({
     controles: {
@@ -15,10 +13,9 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         border: 'solid 1px white',
         color: 'white',
-        padding: '5px',
+        padding: '0.5vh',
         margin: '0.5vh',
         boxSizing: 'border-box',
-        height: '10vh'
     },
 
     formControl: {
@@ -41,19 +38,13 @@ export default function Cadastro() {
         >
             <TextField 
                 variant='outlined' size='small'
-                value='um valor ai...'
+                label='Pesquisar Inscrição'
             />
 
-
             <IconButton>
-                <LayersIcon></LayersIcon>
+                <SearchIcon></SearchIcon>
             </IconButton>
 
-            <Draggable>
-                <IconButton>
-                    <StreetviewOutlinedIcon></StreetviewOutlinedIcon>
-                </IconButton>
-            </Draggable>
         </Grid>
     );
 }

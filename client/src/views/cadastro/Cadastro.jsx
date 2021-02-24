@@ -17,8 +17,9 @@ import Controles from './Controles';
 
 const useStyles = makeStyles({
     root: {
-        padding: '5px',
-        margin: '0.5vh',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        height: '100vh',
     }, 
     cadastro: {
         backgroundColor: '#00BFA5',
@@ -26,14 +27,15 @@ const useStyles = makeStyles({
         border: 'solid 1px white',
         color: 'white',
         overflow: 'auto',
-        padding: '5px',
+        padding: '0.5vh',
         margin: '0.5vh',
+        height: '90%',
         boxSizing: 'border-box',
-        height: '75vh'
     },
 
     formControl: {
-        minWidth: 250
+        minWidth: 250,
+        maxHeight: 90
     },
 
 
@@ -66,16 +68,16 @@ export default function Cadastro() {
             <Grid
                 container
                 direction='column'
-                justify='space-between'
+                justify='space-evenly'
                 alignItems='center'
                 className={classes.cadastro}
             >
-                <Grid>
-                    <h2>Cadastro de Edificações</h2> 
+                <Grid item>
+                    Cadastrar Edificação
                 </Grid> 
 
                 {cadastro.inputBlockedItens.map(input => 
-                    <Grid key={input.id+'-grid'}>
+                    <Grid item key={input.id+'-grid'}>
                         <TextField 
                             id={input.id} label={input.name} 
                             variant='outlined' size='small' className={classes.formControl} disabled
@@ -86,7 +88,7 @@ export default function Cadastro() {
                 )}
 
                 {cadastro.selectItens.map(select => 
-                    <Grid key={select.id+'-grid'}>
+                    <Grid item key={select.id+'-grid'}>
                         <FormControl  key={select.id+'-form'} variant='outlined' size='small' className={classes.formControl}>
                             <InputLabel key={select.id+"-label"}>{select.name}</InputLabel>
                             <Select
@@ -107,7 +109,7 @@ export default function Cadastro() {
                 )}
 
                 {cadastro.inputItens.map(input => 
-                    <Grid key={input.id+'-grid'}>
+                    <Grid item key={input.id+'-grid'}>
                         <TextField 
                             id={input.id} label={input.name} 
                             variant='outlined' size='small' className={classes.formControl}
@@ -117,9 +119,9 @@ export default function Cadastro() {
                     </Grid>
                 )}
 
-                <Grid container justify='space-evenly'>
-                    <Button variant='contained' color='default' onClick={clean}>Limpar</Button>
-                    <Button variant='contained' color='default' onClick={cadastrar}>Salvar</Button>
+                <Grid item container justify='space-evenly'>
+                    <Button variant='contained' color='default' size='small' onClick={clean}>Limpar</Button>
+                    <Button variant='contained' color='default' size='small' onClick={cadastrar}>Salvar</Button>
                 </Grid>
             </Grid>
         </Grid>
