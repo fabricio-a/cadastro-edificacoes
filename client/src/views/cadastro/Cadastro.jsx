@@ -33,12 +33,15 @@ const useStyles = makeStyles({
         boxSizing: 'border-box',
     },
 
-    formControl: {
-        minWidth: 250,
-        maxHeight: 90
+    select: {
+        minWidth: 290,
+        height: 30
     },
 
-
+    input: {
+        minWidth: 262,
+        height: 8
+    }
 });
 
 export default function Cadastro() {
@@ -47,13 +50,16 @@ export default function Cadastro() {
     const classes = useStyles();
 
     const cadastrar = () => {
+        const body = {
+            ...cadastro.form,
+            data: '',
+            usuario: 'fabricio'
+        }
+
         fetch(cadastro.server.urlDb + '/cadastrar', {
             method: 'POST',
-            body: JSON.stringify({
-                ...cadastro.form,
-                data: '',
-                usuario: 'fabricio'
-            })
+            body: JSON.stringify(body),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
         })
             .then((res) => {
                 alert(res)
@@ -81,7 +87,7 @@ export default function Cadastro() {
             <Grid
                 container
                 direction='column'
-                justify='center'
+                justify='flex-start'
                 spacing={1}
                 alignItems='center'
                 className={classes.cadastro}
@@ -94,7 +100,7 @@ export default function Cadastro() {
                     <Grid item key={input.id+'-grid'}>
                         <TextField 
                             id={input.id} label={input.name} 
-                            variant='outlined' size='small' className={classes.formControl} disabled
+                            variant='outlined' size='small' InputProps={{ classes: { input: classes.input } }} disabled
                             value={cadastro.form[input.id]}
                             onChange={(e) => onInputChange(e, input.id)}
                         />
@@ -103,7 +109,7 @@ export default function Cadastro() {
 
                 {cadastro.selectItens.map(select => 
                     <Grid item key={select.id+'-grid'}>
-                        <FormControl  key={select.id+'-form'} variant='outlined' size='small' className={classes.formControl}>
+                        <FormControl  key={select.id+'-form'} variant='outlined' size='small'>
                             <InputLabel key={select.id+"-label"}>{select.name}</InputLabel>
                             <Select
                                 labelId={select.id+'-label'}
@@ -112,6 +118,7 @@ export default function Cadastro() {
                                 label={select.name}
                                 value={cadastro.form[select.id]}
                                 onChange={(e) => onInputChange(e, select.id)}
+                                className={classes.select}
                             >
                                 <MenuItem value=''><em>None</em></MenuItem>
                                 {select.menuItens.map(item => 
@@ -126,7 +133,7 @@ export default function Cadastro() {
                     <Grid item key={input.id+'-grid'}>
                         <TextField 
                             id={input.id} label={input.name} 
-                            variant='outlined' size='small' className={classes.formControl}
+                            variant='outlined' size='small'  InputProps={{ classes: { input: classes.input } }}
                             value={cadastro.form[input.id]}
                             onChange={(e) => onInputChange(e, input.id)}
                         />

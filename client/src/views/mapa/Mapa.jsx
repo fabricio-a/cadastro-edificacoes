@@ -51,10 +51,12 @@ export default function Mapa() {
 
         select.on('select', (event) => {
             if(event.selected.length > 0) {
-                fetch(server.urlDb + `/get_cadastro/:${event.selected[0].values_['INSCRICAO']}/:${event.selected[0].values_['UNIDADE']}`)
+                fetch(server.urlDb + `/get_cadastro/${event.selected[0].values_['INSCRICAO']}/${event.selected[0].values_['UNIDADE']}`)
                     .then(resp => resp.json())
                     .then(resp => {
-                        console.log(resp)
+                        if(resp.length > 0) {
+                            dispatch(selectFeature(Object.keys(form), resp[0]));
+                        }
                         dispatch(selectFeature(Object.keys(form), event.selected[0].values_));
                     });
 

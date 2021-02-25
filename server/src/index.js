@@ -2,11 +2,13 @@ import express from 'express';
 import statics from './routes/statics';
 import dbRoutes from './routes/dbRoutes';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import adAuth from './auth/Ad';
 
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/', statics);
