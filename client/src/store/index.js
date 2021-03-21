@@ -115,21 +115,9 @@ const INITIAL_CADASTRO = {
     layers: {
         tile: [
             {
-                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/Mosaico_urbano/MapServer',
+                url: '',
                 zIndex: 0,
                 maxZoom: 30,
-                camadas: [0]
-            },
-            {
-                url: 'https://www.senocwb.com/senoportal/rest/services/SJP/SJP/MapServer',
-                zIndex: 1,
-                maxZoom: 18,
-                camadas: [0]
-            },
-            {
-                url: 'https://www.senocwb.com/senoportal/rest/services/SJP_cadastro/Cadastro_SJP/MapServer',
-                zIndex: 2,
-                maxZoom: 18,
                 camadas: [0]
             },
         ],
