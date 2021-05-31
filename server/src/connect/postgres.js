@@ -1,8 +1,8 @@
 import { Pool } from 'pg';
 
 const pool = new Pool({
-    user: 'postgres',
-    password: '12345',
+    user: 'USR',
+    password: 'PSW',
     database: 'db_cadastro',
     host: 'localhost',
     port: 5432
