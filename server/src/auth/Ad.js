@@ -11,10 +11,10 @@ const authHandle = (req, res) => {
 
     new Promise((resolve, reject) => {
         const config = {
-            url: 'ldap://SRVMATRIZ.senocwb.com',
-            baseDN: 'dc=senocwb,dc=com',
-            username: 'administrator@senocwb.com',
-            password: 'Pandora%1414'
+            url: 'ldap://SERVER_URL',
+            baseDN: 'dc=DOMINIO,dc=com',
+            username: 'ADMIN_USER@DOMINIO.COM',
+            password: 'PSW'
         };
     
         const ad = new ActiveDirectory(config);
